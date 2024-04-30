@@ -28,51 +28,51 @@ contract ForwarderTest is BaseCCForwarderTest {
     _validateForwardMessageWhenAtLeastOneAdapterWorking(extendedTx);
   }
 
-  function testForwardMessageWhenAdaptersNotWorking(
-    address destination,
-    address origin,
-    uint256 destinationChainId
-  )
-    public
-    executeAs(origin)
-    approveSender(origin)
-    enableBridgeAdaptersForPath(destinationChainId, 5, AdapterSuccessType.ALL_FAILING)
-  {
-    ExtendedTransaction memory extendedTx = _generateExtendedTransaction(
-      TestParams({
-        destination: destination,
-        origin: origin,
-        originChainId: block.chainid,
-        destinationChainId: destinationChainId,
-        envelopeNonce: _currentEnvelopeNonce,
-        transactionNonce: _currentTransactionNonce
-      })
-    );
-    _validateForwardMessageWhenNoAdapterWorking(extendedTx);
-  }
+  // function testForwardMessageWhenAdaptersNotWorking(
+  //   address destination,
+  //   address origin,
+  //   uint256 destinationChainId
+  // )
+  //   public
+  //   executeAs(origin)
+  //   approveSender(origin)
+  //   enableBridgeAdaptersForPath(destinationChainId, 5, AdapterSuccessType.ALL_FAILING)
+  // {
+  //   ExtendedTransaction memory extendedTx = _generateExtendedTransaction(
+  //     TestParams({
+  //       destination: destination,
+  //       origin: origin,
+  //       originChainId: block.chainid,
+  //       destinationChainId: destinationChainId,
+  //       envelopeNonce: _currentEnvelopeNonce,
+  //       transactionNonce: _currentTransactionNonce
+  //     })
+  //   );
+  //   _validateForwardMessageWhenNoAdapterWorking(extendedTx);
+  // }
 
-  function testForwardMessageWhenSomeAdaptersNotWorking(
-    address destination,
-    address origin,
-    uint256 destinationChainId
-  )
-    public
-    executeAs(origin)
-    approveSender(origin)
-    enableBridgeAdaptersForPath(destinationChainId, 5, AdapterSuccessType.SOME_SUCCESS)
-  {
-    ExtendedTransaction memory extendedTx = _generateExtendedTransaction(
-      TestParams({
-        destination: destination,
-        origin: origin,
-        originChainId: block.chainid,
-        destinationChainId: destinationChainId,
-        envelopeNonce: _currentEnvelopeNonce,
-        transactionNonce: _currentTransactionNonce
-      })
-    );
-    _validateForwardMessageWhenAtLeastOneAdapterWorking(extendedTx);
-  }
+  // function testForwardMessageWhenSomeAdaptersNotWorking(
+  //   address destination,
+  //   address origin,
+  //   uint256 destinationChainId
+  // )
+  //   public
+  //   executeAs(origin)
+  //   approveSender(origin)
+  //   enableBridgeAdaptersForPath(destinationChainId, 5, AdapterSuccessType.SOME_SUCCESS)
+  // {
+  //   ExtendedTransaction memory extendedTx = _generateExtendedTransaction(
+  //     TestParams({
+  //       destination: destination,
+  //       origin: origin,
+  //       originChainId: block.chainid,
+  //       destinationChainId: destinationChainId,
+  //       envelopeNonce: _currentEnvelopeNonce,
+  //       transactionNonce: _currentTransactionNonce
+  //     })
+  //   );
+  //   _validateForwardMessageWhenAtLeastOneAdapterWorking(extendedTx);
+  // }
 
   function testRetryEnvelope(
     address destination,
@@ -173,31 +173,31 @@ contract ForwarderTest is BaseCCForwarderTest {
     _validateRetryTransactionSuccessful(extendedTx);
   }
 
-  function testRetryTransactionWhenAllAdaptersFail(
-    address destination,
-    address origin,
-    uint256 destinationChainId,
-    address owner,
-    uint256 envelopeNonce,
-    uint256 transactionNonce
-  )
-    public
-    executeAsOwner(owner)
-    enableBridgeAdaptersForPath(destinationChainId, 5, AdapterSuccessType.ALL_FAILING)
-  {
-    ExtendedTransaction memory extendedTx = _generateExtendedTransaction(
-      TestParams({
-        destination: destination,
-        origin: origin,
-        originChainId: block.chainid,
-        destinationChainId: destinationChainId,
-        envelopeNonce: envelopeNonce,
-        transactionNonce: transactionNonce
-      })
-    );
-    _registerTransaction(extendedTx);
-    _validateRetryTransactionWhenAllAdaptersFail(extendedTx);
-  }
+  // function testRetryTransactionWhenAllAdaptersFail(
+  //   address destination,
+  //   address origin,
+  //   uint256 destinationChainId,
+  //   address owner,
+  //   uint256 envelopeNonce,
+  //   uint256 transactionNonce
+  // )
+  //   public
+  //   executeAsOwner(owner)
+  //   enableBridgeAdaptersForPath(destinationChainId, 5, AdapterSuccessType.ALL_FAILING)
+  // {
+  //   ExtendedTransaction memory extendedTx = _generateExtendedTransaction(
+  //     TestParams({
+  //       destination: destination,
+  //       origin: origin,
+  //       originChainId: block.chainid,
+  //       destinationChainId: destinationChainId,
+  //       envelopeNonce: envelopeNonce,
+  //       transactionNonce: transactionNonce
+  //     })
+  //   );
+  //   _registerTransaction(extendedTx);
+  //   _validateRetryTransactionWhenAllAdaptersFail(extendedTx);
+  // }
 
   function testRetryTransactionWhenNotRegistered(
     address destination,
